@@ -1,0 +1,1156 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "adf8df4da0f13a49",
+        "type": "tab",
+        "label": "UI",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "397ba142777da039",
+        "type": "tab",
+        "label": "ImageUpload",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "70d9f41fc589e13e",
+        "type": "tab",
+        "label": "Helper",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "333f7519c3410f68",
+        "type": "tab",
+        "label": "newImageEvent",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "edcb41b9138361b6",
+        "type": "tab",
+        "label": "newMeasurement",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "edaa6a7e9efc2e14",
+        "type": "tab",
+        "label": "temp",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4719815779878ac8",
+        "type": "MySQLdatabase",
+        "name": "s3-db",
+        "host": "s3-mysql",
+        "port": "3306",
+        "db": "s3",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "45567530218946ec",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "18bd6c51ac9cb0d4",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "6d654f05ab7084d5",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "45567530218946ec",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "3cc11d24.ff01a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b9d412011906d3d7",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "test",
+        "url": "/test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 70,
+        "y": 340,
+        "wires": [
+            [
+                "49070cb9dc6eab6a"
+            ]
+        ]
+    },
+    {
+        "id": "c294f7f89f14a439",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "test",
+        "statusCode": "200",
+        "headers": {},
+        "x": 250,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5265783742de389a",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "49070cb9dc6eab6a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "// Create a Date object from the payload\nvar date = new Date();\n// Change the payload to be a formatted Date string\nmsg.payload = date.toString();\n// Return the message so it can be sent on\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "5265783742de389a",
+                "c294f7f89f14a439"
+            ]
+        ]
+    },
+    {
+        "id": "eee4eb79ba558c9f",
+        "type": "mysql",
+        "z": "adf8df4da0f13a49",
+        "mydb": "4719815779878ac8",
+        "name": "",
+        "x": 330,
+        "y": 120,
+        "wires": [
+            [
+                "a94b3c553a3f0d4d"
+            ]
+        ]
+    },
+    {
+        "id": "44ebe53e4aa58a98",
+        "type": "inject",
+        "z": "adf8df4da0f13a49",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "SELECT * FROM `devices`",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "eee4eb79ba558c9f"
+            ]
+        ]
+    },
+    {
+        "id": "a94b3c553a3f0d4d",
+        "type": "ui_table",
+        "z": "adf8df4da0f13a49",
+        "group": "6d654f05ab7084d5",
+        "name": "",
+        "order": 0,
+        "width": "9",
+        "height": "6",
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 550,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe3ac54c7609b327",
+        "type": "mysql",
+        "z": "adf8df4da0f13a49",
+        "mydb": "4719815779878ac8",
+        "name": "",
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "807ba2c0029ed72e"
+            ]
+        ]
+    },
+    {
+        "id": "0c7abb73991d8d77",
+        "type": "inject",
+        "z": "adf8df4da0f13a49",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "SELECT * FROM samples;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "fe3ac54c7609b327"
+            ]
+        ]
+    },
+    {
+        "id": "807ba2c0029ed72e",
+        "type": "ui_table",
+        "z": "adf8df4da0f13a49",
+        "group": "6d654f05ab7084d5",
+        "name": "",
+        "order": 0,
+        "width": "9",
+        "height": "6",
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 530,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9eeea014862e9176",
+        "type": "mysql",
+        "z": "adf8df4da0f13a49",
+        "mydb": "4719815779878ac8",
+        "name": "",
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "d621a0b28973572c"
+            ]
+        ]
+    },
+    {
+        "id": "a695c071ac786dff",
+        "type": "inject",
+        "z": "adf8df4da0f13a49",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "SELECT * FROM measurements;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 380,
+        "wires": [
+            [
+                "9eeea014862e9176"
+            ]
+        ]
+    },
+    {
+        "id": "d621a0b28973572c",
+        "type": "ui_table",
+        "z": "adf8df4da0f13a49",
+        "group": "6d654f05ab7084d5",
+        "name": "",
+        "order": 0,
+        "width": "9",
+        "height": "6",
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 530,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b0757419d807090a",
+        "type": "google-cloud-gcs-write",
+        "z": "397ba142777da039",
+        "account": "",
+        "keyFilename": "",
+        "filename": "",
+        "contentType": "",
+        "name": "writeOnGCP",
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "5529f15b446c9ca3",
+                "84b44bbec26ff8ba"
+            ]
+        ]
+    },
+    {
+        "id": "eca056e1319cd043",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "deviceId",
+                "pt": "msg",
+                "to": "req.body.deviceId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "timeStamp",
+                "pt": "msg",
+                "to": "req.body.timeStamp",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "latitude",
+                "pt": "msg",
+                "to": "req.body.latitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "longitude",
+                "pt": "msg",
+                "to": "req.body.longitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.files[0].buffer",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "objectName",
+                "pt": "msg",
+                "to": "msg.deviceId &'/' &$now()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"gs://unibo-s3-nodered-images/\" &msg.objectName &(msg.req.files[0].mimetype in [\"image/jpg\", \"image/png\"]? \t\".\"&$split(msg.req.files[0].mimetype,\"/\")[-1]: \"\")\t\t\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 60,
+        "wires": [
+            [
+                "3c9835b697f0aa5a",
+                "4d7785a84b4fff50",
+                "b0757419d807090a",
+                "b86f5895426eee74",
+                "27726f07aa930f3b",
+                "e6b01a4899b6dbeb",
+                "8752dfa7c12a29da"
+            ]
+        ]
+    },
+    {
+        "id": "98c3c7d2f62aa939",
+        "type": "http in",
+        "z": "397ba142777da039",
+        "name": "",
+        "url": "/upload",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 60,
+        "wires": [
+            [
+                "eca056e1319cd043",
+                "e68ae7d7c9d9cf14",
+                "632816988a3dd36d",
+                "8e5ed0c637151248"
+            ]
+        ]
+    },
+    {
+        "id": "d13de63468e8df5d",
+        "type": "http response",
+        "z": "397ba142777da039",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3c9835b697f0aa5a",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "filename",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4d7785a84b4fff50",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5529f15b446c9ca3",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.filename",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "d13de63468e8df5d"
+            ]
+        ]
+    },
+    {
+        "id": "84b44bbec26ff8ba",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b86f5895426eee74",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "deviceId",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "27726f07aa930f3b",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "timeStamp",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e6b01a4899b6dbeb",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.deviceId",
+                "pt": "msg",
+                "to": "deviceId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.latitude",
+                "pt": "msg",
+                "to": "latitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.longitude",
+                "pt": "msg",
+                "to": "longitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.timeStamp",
+                "pt": "msg",
+                "to": "timeStamp",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.imageFile",
+                "pt": "msg",
+                "to": "filename",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"gs://unibo-s3-nodered-images/\"  & msg.objectName & \".json\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "86a1cec02d355ebe"
+            ]
+        ]
+    },
+    {
+        "id": "9e3a3189c4c6e9ab",
+        "type": "google-cloud-gcs-write",
+        "z": "397ba142777da039",
+        "account": "",
+        "keyFilename": "",
+        "filename": "",
+        "contentType": "",
+        "name": "writeOnGCP",
+        "x": 490,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62d7b2e649347718",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "json payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 150,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "8752dfa7c12a29da",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "objectName",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "86a1cec02d355ebe",
+        "type": "template",
+        "z": "397ba142777da039",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"deviceId\":\"{{{payload.deviceId}}}\",\n    \"timeStamp\":\"{{{payload.timeStamp}}}\",\n    \"latitude\":\"{{{payload.latitude}}}\",\n    \"longitude\":\"{{{payload.longitude}}}\",\n    \"imageFileURI\":\"{{{payload.imageFile}}}\"\n}",
+        "output": "str",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "62d7b2e649347718",
+                "9e3a3189c4c6e9ab",
+                "e73af27bec1def9c"
+            ]
+        ]
+    },
+    {
+        "id": "e68ae7d7c9d9cf14",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.files",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 250,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "632816988a3dd36d",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8e5ed0c637151248",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 120,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e73af27bec1def9c",
+        "type": "google-cloud-pubsub out",
+        "z": "397ba142777da039",
+        "account": "",
+        "keyFilename": "",
+        "topic": "images",
+        "name": "",
+        "x": 420,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ce82cc6d08cdc4f",
+        "type": "google-cloud-pubsub out",
+        "z": "70d9f41fc589e13e",
+        "account": "",
+        "keyFilename": "",
+        "topic": "measurements",
+        "name": "",
+        "x": 280,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c55a420ade338b98",
+        "type": "inject",
+        "z": "70d9f41fc589e13e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload2",
+                "v": "{     \"deviceId\":\"1\",     \"timeStamp\":\"2022-07-05T09:43:36Z\",     \"latitude\":\"44.5\",     \"longitude\":\"11.35\",     \"imageFileURI\":\"gs://unibo-s3-nodered-images/1/2022-07-09T17:51:42.874Z.png\" }",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{     \"deviceId\":\"1\",     \"timeStamp\":\"2022-07-05T09:43:36Z\",     \"latitude\":\"44.5\",     \"longitude\":\"11.35\",    \"temperature\":36, \"humidity\":85 }",
+        "payloadType": "str",
+        "x": 70,
+        "y": 180,
+        "wires": [
+            [
+                "ef599f25dc5f2f4d",
+                "8ce82cc6d08cdc4f"
+            ]
+        ]
+    },
+    {
+        "id": "ef599f25dc5f2f4d",
+        "type": "debug",
+        "z": "70d9f41fc589e13e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "dadeec5ac3981f36",
+        "type": "google-cloud-pubsub in",
+        "z": "333f7519c3410f68",
+        "account": "",
+        "keyFilename": "",
+        "subscription": "images-subscription",
+        "assumeJSON": true,
+        "name": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "f735208953247ee4",
+                "02532f60bb713fc9"
+            ]
+        ]
+    },
+    {
+        "id": "f735208953247ee4",
+        "type": "debug",
+        "z": "333f7519c3410f68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "09bbcb66ad7c370c",
+        "type": "debug",
+        "z": "333f7519c3410f68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bb16013b324d3431",
+        "type": "mysql",
+        "z": "333f7519c3410f68",
+        "mydb": "4719815779878ac8",
+        "name": "",
+        "x": 570,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "02532f60bb713fc9",
+        "type": "change",
+        "z": "333f7519c3410f68",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "\"INSERT INTO  samples (deviceId, timeStamp, latitude, longitude, imageFileURI)\"&\t\" VALUES(\"&msg.payload.deviceId&\",\"\t&'\"'&msg.payload.timeStamp&'\"'&\",\"\t&msg.payload.latitude&\",\"\t&msg.payload.longitude&\",\"\t&'\"'&msg.payload.imageFileURI&'\"'\t&\");\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "bb16013b324d3431",
+                "09bbcb66ad7c370c"
+            ]
+        ]
+    },
+    {
+        "id": "254bd16a145a11eb",
+        "type": "google-cloud-pubsub in",
+        "z": "edcb41b9138361b6",
+        "account": "",
+        "keyFilename": "",
+        "subscription": "measurements-subscription",
+        "assumeJSON": true,
+        "name": "",
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "821cdd2145b7e6f9",
+                "ade2d1994ab196df"
+            ]
+        ]
+    },
+    {
+        "id": "821cdd2145b7e6f9",
+        "type": "debug",
+        "z": "edcb41b9138361b6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e4e30afc22be421c",
+        "type": "debug",
+        "z": "edcb41b9138361b6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topic",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "357ec1ca74dbff9e",
+        "type": "mysql",
+        "z": "edcb41b9138361b6",
+        "mydb": "4719815779878ac8",
+        "name": "",
+        "x": 570,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ade2d1994ab196df",
+        "type": "change",
+        "z": "edcb41b9138361b6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": " \"INSERT INTO  measurements (deviceId, timeStamp, latitude, longitude, temperature, humidity)\"&\t\" VALUES(\"&msg.payload.deviceId&\",\"\t&'\"'&msg.payload.timeStamp&'\"'&\",\"\t&msg.payload.latitude&\",\"\t&msg.payload.longitude&\",\"&msg.payload.temperature&\",\"&msg.payload.humidity\t&\");\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "357ec1ca74dbff9e",
+                "e4e30afc22be421c"
+            ]
+        ]
+    },
+    {
+        "id": "42f618b77b0e9c75",
+        "type": "google-cloud-pubsub in",
+        "z": "edaa6a7e9efc2e14",
+        "account": "",
+        "keyFilename": "",
+        "subscription": "images-subscription",
+        "assumeJSON": true,
+        "name": "",
+        "x": 270,
+        "y": 160,
+        "wires": [
+            [
+                "13b75416bbd5e7f2"
+            ]
+        ]
+    },
+    {
+        "id": "13b75416bbd5e7f2",
+        "type": "debug",
+        "z": "edaa6a7e9efc2e14",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 200,
+        "wires": []
+    }
+]

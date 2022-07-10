@@ -1,0 +1,424 @@
+[
+    {
+        "id": "397ba142777da039",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b0757419d807090a",
+        "type": "google-cloud-gcs-write",
+        "z": "397ba142777da039",
+        "account": "",
+        "keyFilename": "",
+        "filename": "",
+        "contentType": "",
+        "name": "writeOnGCP",
+        "x": 570,
+        "y": 320,
+        "wires": [
+            [
+                "5529f15b446c9ca3",
+                "84b44bbec26ff8ba"
+            ]
+        ]
+    },
+    {
+        "id": "eca056e1319cd043",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "deviceId",
+                "pt": "msg",
+                "to": "req.body.deviceId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "timeStamp",
+                "pt": "msg",
+                "to": "req.body.timeStamp",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "latitude",
+                "pt": "msg",
+                "to": "req.body.latitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "longitude",
+                "pt": "msg",
+                "to": "req.body.longitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "req.files[0].buffer",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "objectName",
+                "pt": "msg",
+                "to": "msg.deviceId &'/' &$now()",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"gs://awentia-data-collection-eu-ita-2022-prod/\" &msg.objectName &(msg.req.files[0].mimetype in [\"image/jpg\", \"image/png\"]? \t\".\"&$split(msg.req.files[0].mimetype,\"/\")[-1]: \"\")\t\t\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "3c9835b697f0aa5a",
+                "4d7785a84b4fff50",
+                "b0757419d807090a",
+                "b86f5895426eee74",
+                "27726f07aa930f3b",
+                "e6b01a4899b6dbeb",
+                "8752dfa7c12a29da"
+            ]
+        ]
+    },
+    {
+        "id": "98c3c7d2f62aa939",
+        "type": "http in",
+        "z": "397ba142777da039",
+        "name": "",
+        "url": "/upload",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "eca056e1319cd043",
+                "e68ae7d7c9d9cf14",
+                "632816988a3dd36d"
+            ]
+        ]
+    },
+    {
+        "id": "d13de63468e8df5d",
+        "type": "http response",
+        "z": "397ba142777da039",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3c9835b697f0aa5a",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "filename",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4d7785a84b4fff50",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5529f15b446c9ca3",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.filename",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 260,
+        "wires": [
+            [
+                "d13de63468e8df5d"
+            ]
+        ]
+    },
+    {
+        "id": "84b44bbec26ff8ba",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "b86f5895426eee74",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "deviceId",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "27726f07aa930f3b",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "timeStamp",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "0e698768d6d4165c",
+        "type": "json",
+        "z": "397ba142777da039",
+        "name": "",
+        "property": "payload.json",
+        "action": "",
+        "pretty": true,
+        "x": 130,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6b01a4899b6dbeb",
+        "type": "change",
+        "z": "397ba142777da039",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.deviceId",
+                "pt": "msg",
+                "to": "deviceId",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.latitude",
+                "pt": "msg",
+                "to": "latitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.longitude",
+                "pt": "msg",
+                "to": "longitude",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.timeStamp",
+                "pt": "msg",
+                "to": "timeStamp",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.imageFile",
+                "pt": "msg",
+                "to": "filename",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "filename",
+                "pt": "msg",
+                "to": "\"gs://awentia-data-collection-eu-ita-2022-prod/\"  & msg.objectName & \".json\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "86a1cec02d355ebe"
+            ]
+        ]
+    },
+    {
+        "id": "9e3a3189c4c6e9ab",
+        "type": "google-cloud-gcs-write",
+        "z": "397ba142777da039",
+        "account": "",
+        "keyFilename": "",
+        "filename": "",
+        "contentType": "",
+        "name": "writeOnGCP",
+        "x": 490,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "62d7b2e649347718",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "json payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 270,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "8752dfa7c12a29da",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "objectName",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "86a1cec02d355ebe",
+        "type": "template",
+        "z": "397ba142777da039",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"deviceId\":\"{{{payload.deviceId}}}\",\n    \"timeStamp\":\"{{{payload.timeStamp}}}\",\n    \"latitude\":\"{{{payload.latitude}}}\",\n    \"longitude\":\"{{{payload.longitude}}}\",\n    \"imageFileURI\":\"{{{payload.imageFile}}}\"\n}",
+        "output": "str",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "62d7b2e649347718",
+                "9e3a3189c4c6e9ab"
+            ]
+        ]
+    },
+    {
+        "id": "e68ae7d7c9d9cf14",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.files",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 210,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "632816988a3dd36d",
+        "type": "debug",
+        "z": "397ba142777da039",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 160,
+        "wires": []
+    }
+]
