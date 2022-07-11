@@ -145,7 +145,7 @@ Next, we move the service key on the container stateful volume:
 And finally we need to make sure that the json credential are referenced by the env var GOOGLE_APPLICATION_CREDENTIAL, so we need to re-start the container:
 
     docker rm -f mynodered
-    docker run -it -p 1880:1880 -v node_red_data:/data --network s3 --env GOOGLE_CLOUD_PROJECT=s3-unibo-nodered --env GOOGLE_APPLICATION_CREDENTIAL=/data/service-account-key.json --name mynodered nodered/node-red
+    docker run -it -p 1880:1880 -v node_red_data:/data --network s3 --env GOOGLE_CLOUD_PROJECT=s3-unibo-nodered --env GOOGLE_APPLICATION_CREDENTIALS=/data/service-account-key.json --name mynodered nodered/node-red
 
 And now here we are, we are ready to test:
 
@@ -166,7 +166,7 @@ And it works! Ok, so now let's move to the other operating flow.
 #### newImage event
 
 Let's add a pub/sub node into the imageUpload flow. You should configure the node as follow and connect to the json template node: 
-    ![Nodered start page](/img/mysqlnode-conf.png)
+    ![Nodered start page](/img/pubsub-node-conf.png)
 
 #### insertIntoDB
 
