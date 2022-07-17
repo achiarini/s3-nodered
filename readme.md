@@ -342,9 +342,11 @@ We now connect to the VM to startup the simulation jobs
     gcloud artifacts repositories delete s3-nodered-repo  --location europe-west1
     #delete topic
     gcloud pubsub topics delete projects/s3-unibo-nodered/topics/images
+    gcloud pubsub topics delete projects/s3-unibo-nodered/topics/measurements
     #delete subscription
     gcloud pubsub subscriptions delete projects/s3-unibo-nodered/subscriptions/images-subscription
     gcloud pubsub subscriptions delete projects/s3-unibo-nodered/subscriptions/measurements-subscription
     #delete bucket
     gsutil rm -r  gs://unibo-s3-nodered-images/
+
 
